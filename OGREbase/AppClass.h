@@ -1,7 +1,6 @@
-// Nick Fisher 2011
-// OGRE3D demo application
+// Nick Fisher 2012
+// OGRE3D application
 // AppClass.h
-
 
 // Include --------------------------------------------------------------------------------------------
 #include "OgreBase.h"
@@ -35,7 +34,6 @@
 #include <Terrain/OgreTerrainGroup.h>			// Ogre's terrain manager
 #endif
 	
-
 
 
 class app : public Base										// Inherits my base framework

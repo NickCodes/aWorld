@@ -1,10 +1,5 @@
 #include "OGREbase/AppClass.h"
 
-#ifndef CAMERACONTROLLER_H
-#define CAMERACONTROLLER_H
-#include "../core/CameraController.h"
-#endif
-
 #if defined(WIN32)
 #include "windows.h"
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {

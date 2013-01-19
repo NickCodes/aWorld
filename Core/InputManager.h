@@ -32,7 +32,7 @@ public:
 		InputHandler(void);
 		~InputHandler(void);
 
-		void init(myOutsideManager*, Ogre::RenderWindow *, CameraController *, StateManager *);		// Init takes the application's render window and camera controller (from my camera controller class); 
+		void init(myOutsideManager*, Ogre::RenderWindow *, CameraController *, StateManager *);			// Init takes the application's render window and camera controller (from my camera controller class); 
 		void captureKeyboard(void);																		// Tells OIS to capture keyboard input once per frame
 		void captureMouse(void);																		// Tells OIS to capture mouse input once per frame
 		void setMouseBounds(unsigned int x, unsigned int y);																			// Sets the bounds of the mouse from upper left IE x=800 y=600

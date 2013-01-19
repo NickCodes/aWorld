@@ -42,6 +42,7 @@ void myGUIManager::init(myOutsideManager* t, StateManager* s, Ogre::RenderWindow
 
 void myGUIManager::mainMenu()
 {	
+	/*
 	// Create menu bar
 	MyGUI::MenuBar* myMainMenu = mGUI->createWidget<MyGUI::MenuBar>("MenuBar", 0, 0, 1000, 25, MyGUI::Align::Top, "Main");
 	
@@ -62,4 +63,13 @@ void myGUIManager::mainMenu()
 		sceneMenuSaveTerrain->setFontName("default");
 	MyGUI::MenuItem* sceneMenuExit= sceneMenuPopUp->addItem("Exit",MyGUI::MenuItemType::Normal);	
 		sceneMenuExit->setFontName("default");
+	*/
+
+	MyGUI::LayoutManager::getInstance().load("newMain.layout");
+
+}
+
+void myGUIManager::exitFromMenu(void)
+{
+	stateManager->setState(0);
 }

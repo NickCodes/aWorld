@@ -2,18 +2,7 @@
 // OGRE3D demo application
 // AppClass.cpp
 
-// TODO - remove me (git) ;)
-
 #include "AppClass.h"
-#ifndef PLAYERMANAGER_H
-#define PLAYERMANAGER_H
-#include "../core/PlayerManager.h"
-#endif
-
-#ifndef OUTSIDEMANAGER_H
-#define OUTSIDEMANAGER_H
-#include "../managers/myOutsideManager.h"
-#endif
 
 app::~app(void)
 {	
