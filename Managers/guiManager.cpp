@@ -15,7 +15,6 @@
 #include "../managers/myOutsideManager.h"
 #endif
 
-
 myGUIManager::myGUIManager(void)
 {
 }
@@ -35,9 +34,14 @@ void myGUIManager::init(myOutsideManager* t, StateManager* s, Ogre::RenderWindow
 
 	// Instantiate the MyGUI class
 	MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
-	mPlatform->initialise(renderWindow, mSceneMgr);					
+	mPlatform->initialise(renderWindow, mSceneMgr);
 	mGUI = new MyGUI::Gui();
 	mGUI->initialise();
+
+
+
+
+	
 }
 
 void myGUIManager::mainMenu()
@@ -63,13 +67,45 @@ void myGUIManager::mainMenu()
 		sceneMenuSaveTerrain->setFontName("default");
 	MyGUI::MenuItem* sceneMenuExit= sceneMenuPopUp->addItem("Exit",MyGUI::MenuItemType::Normal);	
 		sceneMenuExit->setFontName("default");
+	
+	// Generate a button that calls the exit function
+	MyGUI::ButtonPtr exitButton = mGUI->createWidget<MyGUI::Button>("Button", 10, 10, 300, 26, MyGUI::Align::Default, "Main");
+	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::exitFromMenu);
+	
 	*/
+	
+	
+	
+	// Define the whole screen as a parent widget
+	MyGUI::WidgetPtr wholeScreen = mGUI->createWidget<MyGUI::Widget>("PanelSkin",0,0,renderWindow->getWidth(),renderWindow->getHeight(),MyGUI::Align::Default,"Back");
+	// Load layout from file
+	MyGUI::LayoutManager::getInstance().loadLayout("newMain.layout","",wholeScreen);
+	
+	// Assign the exit function to an existing element in the .layout
+	MyGUI::Widget* exitBtn = MyGUI::Gui::getInstance().findWidgetT("exitButton");
+	exitBtn->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::exitFromMenu);
 
-	MyGUI::LayoutManager::getInstance().load("newMain.layout");
+	MyGUI::Widget* optionsBtn = MyGUI::Gui::getInstance().findWidgetT("optionsButton");
+	optionsBtn->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::showOptions);
 
+	MyGUI::Widget* loadMapBtn = MyGUI::Gui::getInstance().findWidgetT("loadMapButton");
+	loadMapBtn->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::showLoadMap);
 }
 
-void myGUIManager::exitFromMenu(void)
+void myGUIManager::exitFromMenu(MyGUI::Widget* _sender)
 {
 	stateManager->setState(0);
 }
+
+void myGUIManager::showOptions(MyGUI::Widget* _sender)
+{
+	MyGUI::Widget* optionsMenu = MyGUI::Gui::getInstance().findWidgetT("menuOptions");
+	if (optionsMenu->getVisible()) { optionsMenu->setVisible(false); } else optionsMenu->setVisible(true);
+
+}
+
+void myGUIManager::showLoadMap(MyGUI::Widget* _sender)
+{
+	//
+}
+

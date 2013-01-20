@@ -30,7 +30,9 @@ public:
 	
 	void init(myOutsideManager*, StateManager*, Ogre::RenderWindow*, Ogre::SceneManager*, Ogre::Camera*);
 	void mainMenu();
-	void exitFromMenu();
+	void exitFromMenu(MyGUI::Widget* _sender);
+	void showOptions(MyGUI::Widget* _sender);
+	void showLoadMap(MyGUI::Widget* _sender);
 	
 private:
 	// Pointers to various state managers passed to the class on init()

@@ -84,10 +84,10 @@ void Base::setUpResources(void)
 void Base::createWindow(void)
 {
 	Ogre::NameValuePairList opts;
-    opts["resolution"] = "1024x768";
+    opts["resolution"] = "1820x980";
     opts["fullscreen"] = "false";
     opts["vsync"] = "false";
-	mWindow = mRoot->createRenderWindow("WINDOW", 1024,768, false, &opts);
+	mWindow = mRoot->createRenderWindow("WINDOW", 1820,980, false, &opts);
 }
 
 void Base::chooseSceneManager(void)
