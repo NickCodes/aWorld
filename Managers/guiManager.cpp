@@ -32,51 +32,26 @@ void myGUIManager::init(myOutsideManager* t, StateManager* s, Ogre::RenderWindow
 	renderWindow = rWin;
 	sceneManager = mSceneMgr;
 
-	// Instantiate the MyGUI class
+	// Instantiate the MyGUI class - TODO class should be independent of this instantiation
 	MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
 	mPlatform->initialise(renderWindow, mSceneMgr);
 	mGUI = new MyGUI::Gui();
 	mGUI->initialise();
-
-
-
-
-	
 }
+
+void myGUIManager::dbug()
+{
+	//Ogre::LogManager::getSingletonPtr()->logMessage("?*?*?*?*?*?*?*?* Debug called");
+	//Ogre::String debugOutput;
+	// MyGUI::Widget* dbWindow = MyGUI::Gui::getInstance().findWidgetT("debugText");
+	//dbugWindow->setUserString("salad","forks");
+}
+
 
 void myGUIManager::mainMenu()
 {	
-	/*
-	// Create menu bar
-	MyGUI::MenuBar* myMainMenu = mGUI->createWidget<MyGUI::MenuBar>("MenuBar", 0, 0, 1000, 25, MyGUI::Align::Top, "Main");
-	
-	// First menu item on menu bar
-	MyGUI::MenuItem* sceneMenuItem = myMainMenu->addItem("Scene", MyGUI::MenuItemType::Popup);
-	sceneMenuItem->setFontName("default");
-	
-	// Create popup item for the first menu item
-	MyGUI::PopupMenu * sceneMenuPopUp = sceneMenuItem->createItemChildT<MyGUI::PopupMenu>();		
-	// Add menu items to the popup menu
-	MyGUI::MenuItem* sceneMenuLoadScene = sceneMenuPopUp->addItem("Load Scene",MyGUI::MenuItemType::Separator);
-		sceneMenuLoadScene->setFontName("default");
-	MyGUI::MenuItem* sceneMenuLoadTerrain = sceneMenuPopUp->addItem("Load Terrain",MyGUI::MenuItemType::Normal);
-		sceneMenuLoadTerrain->setFontName("default");
-	MyGUI::MenuItem* sceneMenuProcessTerrain= sceneMenuPopUp->addItem("Process Terrain",MyGUI::MenuItemType::Normal);
-		sceneMenuProcessTerrain->setFontName("default");
-	MyGUI::MenuItem* sceneMenuSaveTerrain= sceneMenuPopUp->addItem("Save Tererain",MyGUI::MenuItemType::Normal);	
-		sceneMenuSaveTerrain->setFontName("default");
-	MyGUI::MenuItem* sceneMenuExit= sceneMenuPopUp->addItem("Exit",MyGUI::MenuItemType::Normal);	
-		sceneMenuExit->setFontName("default");
-	
-	// Generate a button that calls the exit function
-	MyGUI::ButtonPtr exitButton = mGUI->createWidget<MyGUI::Button>("Button", 10, 10, 300, 26, MyGUI::Align::Default, "Main");
-	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::exitFromMenu);
-	
-	*/
-	
 	// Define the whole screen as a parent widget
 	MyGUI::WidgetPtr wholeScreen = mGUI->createWidget<MyGUI::Widget>("PanelSkin",0,0,renderWindow->getWidth(),renderWindow->getHeight(),MyGUI::Align::Default,"Back");
-	
 	// Load layout from file
 	MyGUI::LayoutManager::getInstance().loadLayout("newMain.layout","",wholeScreen);
 	
@@ -90,6 +65,20 @@ void myGUIManager::mainMenu()
 	MyGUI::Widget* loadMapBtn = MyGUI::Gui::getInstance().findWidgetT("loadMapButton");
 	loadMapBtn->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::showLoadMap);
 
+	/*
+	// Create menu bar manually
+	MyGUI::MenuBar* myMainMenu = mGUI->createWidget<MyGUI::MenuBar>("MenuBar", 0, 0, 1000, 25, MyGUI::Align::Top, "Main");
+	// First menu item on menu bar
+	MyGUI::MenuItem* sceneMenuItem = myMainMenu->addItem("Scene", MyGUI::MenuItemType::Popup);
+	sceneMenuItem->setFontName("default");
+	// Create popup item for the first menu item
+	MyGUI::PopupMenu * sceneMenuPopUp = sceneMenuItem->createItemChildT<MyGUI::PopupMenu>();		
+	// Add menu items to the popup menu
+	MyGUI::MenuItem* sceneMenuLoadScene = sceneMenuPopUp->addItem("Load Scene",MyGUI::MenuItemType::Separator);
+		sceneMenuLoadScene->setFontName("default");
+	MyGUI::MenuItem* sceneMenuLoadTerrain = sceneMenuPopUp->addItem("Load Terrain",MyGUI::MenuItemType::Normal);
+		sceneMenuLoadTerrain->setFontName("default");
+	*/
 }
 
 void myGUIManager::exitFromMenu(MyGUI::Widget* _sender)

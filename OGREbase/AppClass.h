@@ -7,6 +7,7 @@
 #include "../core/InputManager.h"
 #include "../managers/guiManager.h"
 #include "../util/DotSceneLoader.h"
+#include "../util/aWorldConfig.h"			// aWorld configurations loader
 
 #ifndef OUTSIDEMANAGER_H
 #define OUTSIDEMANAGER_H
@@ -33,6 +34,8 @@
 #include <Terrain/OgreTerrain.h>				// Ogre's terrain manager
 #include <Terrain/OgreTerrainGroup.h>			// Ogre's terrain manager
 #endif
+
+
 	
 
 
@@ -43,12 +46,12 @@ public:
 
 	app(void);
 	~app(void);
-	
-	void initManagers(void);								// Set up managers (input, state, etc)
-	void kickoff(void);
-	void update(void);										// Called from main each frame
-	void setState (int);
-	int	 getState(void);									// Returns the state from private stateManager
+			
+	void initManagers(void);			// Set up managers (input, state, etc)
+	void kickoff(void);					// Entry point for user interaction
+	void update(void);					// Called in main loop, gets input and updates app
+	void setState (int);				// Polls statemanager
+	int	 getState(void);				// Polls statemanager
 
 	
 private:
@@ -64,8 +67,9 @@ private:
 	InputHandler inputManager;								// Class to handle keyboard and mouse input
 	PlayerManager playerManager;
 	myOutsideManager outsideManager;						// Class to handle loading terrain
-
 	Ogre::DotSceneLoader dotSceneLoader;					// Class to manage parsing DOTSCENE files for geometry
+	MyConfig config;										// Class to handle loading config settings from file
+	
 
 	// Terrain	--------------------------------------------------------------------------------------------
 	Ogre::TerrainGroup* mTerrainGroup;						// Terrain manager

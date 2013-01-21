@@ -33,9 +33,6 @@ public:
     Ogre::String mResourcesCfg;
     Ogre::String mPluginsCfg;			
 
-	Ogre::NameValuePairList opts;	// An array to hold the options as read from a CFG file
-	void readOptionsFromCFG(Ogre::NameValuePairList*);	// Reads from config and assigns to array
-
 	void setUpOgre(void);
 	void setUpResources(void);
 	void createWindow(void);

@@ -16,22 +16,20 @@ app::app(void)
 
 void app::initManagers(void)
 {
+	config.go();	// Load the config options from file - config.getKeyExists("Player/Name") = t/f
+	
+	Ogre::LogManager::getSingletonPtr()->logMessage("***** Config loaded. Hello, " + config.getValueAsString("Player/Name"));
 	stateManager.init();													
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** stateManager initialized");
-
 	// This should be in CamerController::init()
 	cameraController.createCameraController(mCamera,mSceneMgr, 0.8);		
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** cameraController created");
-	
 	guiManager.init(&outsideManager, &stateManager, mWindow, mSceneMgr, mCamera);		
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** guiManager initialized");
-
 	inputManager.init(&outsideManager, mWindow, &cameraController, &stateManager);				
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** inputManager initialized");
-
 	outsideManager.init(&playerManager, &cameraController, mSceneMgr);
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** terrainManager initialized");
-
 	playerManager.init();
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** Player Manager initialized");
 }
@@ -108,5 +106,6 @@ void app::setState(int s)
 // Kickoff is where user interaction begins - ie main menu
 void app::kickoff(void)
 {
+	
 	guiManager.mainMenu();	// Draw the main menu bar
 }
