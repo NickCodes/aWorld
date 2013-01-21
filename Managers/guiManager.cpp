@@ -74,10 +74,9 @@ void myGUIManager::mainMenu()
 	
 	*/
 	
-	
-	
 	// Define the whole screen as a parent widget
 	MyGUI::WidgetPtr wholeScreen = mGUI->createWidget<MyGUI::Widget>("PanelSkin",0,0,renderWindow->getWidth(),renderWindow->getHeight(),MyGUI::Align::Default,"Back");
+	
 	// Load layout from file
 	MyGUI::LayoutManager::getInstance().loadLayout("newMain.layout","",wholeScreen);
 	

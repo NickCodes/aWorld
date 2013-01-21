@@ -8,8 +8,6 @@
 #include "ogre.h"
 #endif
 
-
-
 void StateManager::init(void)
 {
 	state = 1;					// Set default state 1 (menu state)

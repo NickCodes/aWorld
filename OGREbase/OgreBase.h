@@ -26,13 +26,15 @@ public:
 	void initBase(void);
 	void render(void);
 
-
 	Ogre::Camera* mCamera;			
 	Ogre::Root* mRoot;					
     Ogre::SceneManager* mSceneMgr;
 	Ogre::RenderWindow* mWindow;
     Ogre::String mResourcesCfg;
     Ogre::String mPluginsCfg;			
+
+	Ogre::NameValuePairList opts;	// An array to hold the options as read from a CFG file
+	void readOptionsFromCFG(Ogre::NameValuePairList*);	// Reads from config and assigns to array
 
 	void setUpOgre(void);
 	void setUpResources(void);
