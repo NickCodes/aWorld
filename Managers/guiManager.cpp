@@ -89,6 +89,7 @@ void myGUIManager::mainMenu()
 
 	MyGUI::Widget* loadMapBtn = MyGUI::Gui::getInstance().findWidgetT("loadMapButton");
 	loadMapBtn->eventMouseButtonClick += MyGUI::newDelegate(this, &myGUIManager::showLoadMap);
+
 }
 
 void myGUIManager::exitFromMenu(MyGUI::Widget* _sender)
@@ -105,6 +106,7 @@ void myGUIManager::showOptions(MyGUI::Widget* _sender)
 
 void myGUIManager::showLoadMap(MyGUI::Widget* _sender)
 {
-	//
+	MyGUI::Widget* loadMenu = MyGUI::Gui::getInstance().findWidgetT("loadMapMenu");
+	if (loadMenu->getVisible()) {loadMenu->setVisible(false);} else loadMenu->setVisible(true);
 }
 
