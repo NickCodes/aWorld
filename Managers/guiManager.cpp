@@ -39,12 +39,13 @@ void myGUIManager::init(myOutsideManager* t, StateManager* s, Ogre::RenderWindow
 	mGUI->initialise();
 }
 
-void myGUIManager::dbug()
+void myGUIManager::dbug(Ogre::String addition)
 {
-	//Ogre::LogManager::getSingletonPtr()->logMessage("?*?*?*?*?*?*?*?* Debug called");
-	//Ogre::String debugOutput;
-	// MyGUI::Widget* dbWindow = MyGUI::Gui::getInstance().findWidgetT("debugText");
-	//dbugWindow->setUserString("salad","forks");
+	MyGUI::EditBox* dbWindow = MyGUI::Gui::getInstance().findWidget<MyGUI::EditBox>("wordWrap");
+	Ogre::String temp = dbWindow->getCaption();
+	temp = temp + "\n" + addition;
+	dbWindow->setCaption(temp);
+	//dbWindow->setProperty("Caption","sssssssssssssssssssss");
 }
 
 
@@ -97,5 +98,6 @@ void myGUIManager::showLoadMap(MyGUI::Widget* _sender)
 {
 	MyGUI::Widget* loadMenu = MyGUI::Gui::getInstance().findWidgetT("loadMapMenu");
 	if (loadMenu->getVisible()) {loadMenu->setVisible(false);} else loadMenu->setVisible(true);
+	dbug("loadMap Clicked");
 }
 
