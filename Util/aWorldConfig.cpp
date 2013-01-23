@@ -35,7 +35,6 @@ void MyConfig::go(void)
 			m_Configs.insert(std::pair<std::string, std::string>(sectionName + "/" + keyName, valueName));
 			
 			// Debug
-			// Ogre::String msg = "Inserted: " + sectionName + "/" + keyName, valueName;
 			Ogre::String msg2 ="m_Configs: " + m_Configs[sectionName+"/"+keyName];
 			Ogre::LogManager::getSingletonPtr()->logMessage(msg2);
 		}

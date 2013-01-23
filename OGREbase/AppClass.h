@@ -35,10 +35,6 @@
 #include <Terrain/OgreTerrainGroup.h>			// Ogre's terrain manager
 #endif
 
-
-	
-
-
 class app : public Base										// Inherits my base framework
 {
 
@@ -59,7 +55,6 @@ private:
 	bool shutDownFlag;										// Flag to shut down the application
 	float moveScale, mouseScale, playerHeight;				// Modify this to increase/decrease movement/look speed
 	
-
 	// Managers for various tasks	------------------------------------------------------------------------
 	StateManager stateManager;								// Class to control game states
 	myGUIManager guiManager;								// Class to handke GUI elements

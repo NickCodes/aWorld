@@ -1,8 +1,8 @@
 #include "OgreBase.h"
+#include <iostream>
 
 Base::Base(void)
 {
-	
 }
 
 Base::~Base(void)

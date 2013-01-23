@@ -67,12 +67,14 @@ void app::evaluateKeypress(void)
 			if (stateManager.getState() == 1)
 				{
 					stateManager.setState(2);
+					guiManager.dbug("State changed to 2");
 					inputManager.space = false;
 					Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL,"***** Calling debug update in state 2");
 				}
 			else if (stateManager.getState() == 2)
 				{
 					stateManager.setState(1);
+					guiManager.dbug("State changed to 1");
 					inputManager.space = false;
 					Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL,"***** Calling debug update in state 1");
 				}
