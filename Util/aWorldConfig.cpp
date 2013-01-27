@@ -15,7 +15,7 @@ MyConfig::MyConfig()
  
 void MyConfig::go(void)
 {
-	m_ConfigFile.load("aWorldOpts.cfg", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, "=", true);
+	m_ConfigFile.load("aWorldOpts.cfg", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, "=", true); //todo is this location ok?
 		
 	Ogre::ConfigFile::SectionIterator seci = m_ConfigFile.getSectionIterator();
 	Ogre::String sectionName;
@@ -38,11 +38,7 @@ void MyConfig::go(void)
 			Ogre::String msg2 ="m_Configs: " + m_Configs[sectionName+"/"+keyName];
 			Ogre::LogManager::getSingletonPtr()->logMessage(msg2);
 		}
-	
 	}
-
-	Ogre::LogManager::getSingletonPtr()->logMessage("***** Config Manager loaded config from file! ***********");
-	
 }
 
 MyConfig::~MyConfig() { }

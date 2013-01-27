@@ -9,6 +9,8 @@
 #include <OgreFont.h>
 #include <OgreFontManager.h>
 
+#include "../util/aWorldConfig.h"			// aWorld configurations loader
+
 
 // Below is the Ogre base class that applications will inherit
 //--------------------------------------------------------------------------------------------
@@ -32,6 +34,8 @@ public:
 	Ogre::RenderWindow* mWindow;
     Ogre::String mResourcesCfg;
     Ogre::String mPluginsCfg;			
+
+	MyConfig config;		// Class to handle loading config settings from file
 
 	void setUpOgre(void);
 	void setUpResources(void);

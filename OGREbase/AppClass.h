@@ -7,7 +7,7 @@
 #include "../core/InputManager.h"
 #include "../managers/guiManager.h"
 #include "../util/DotSceneLoader.h"
-#include "../util/aWorldConfig.h"			// aWorld configurations loader
+//#include "../util/aWorldConfig.h"			// aWorld configurations loader
 
 #ifndef OUTSIDEMANAGER_H
 #define OUTSIDEMANAGER_H
@@ -63,7 +63,7 @@ private:
 	PlayerManager playerManager;
 	myOutsideManager outsideManager;						// Class to handle loading terrain
 	Ogre::DotSceneLoader dotSceneLoader;					// Class to manage parsing DOTSCENE files for geometry
-	MyConfig config;										// Class to handle loading config settings from file
+	//	MyConfig config;										// Class to handle loading config settings from file
 	
 
 	// Terrain	--------------------------------------------------------------------------------------------

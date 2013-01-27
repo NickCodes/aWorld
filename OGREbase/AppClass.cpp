@@ -16,9 +16,6 @@ app::app(void)
 
 void app::initManagers(void)
 {
-	config.go();	// Load the config options from file - config.getKeyExists("Player/Name") = t/f
-	
-	Ogre::LogManager::getSingletonPtr()->logMessage("***** Config loaded. Hello, " + config.getValueAsString("Player/Name"));
 	stateManager.init();													
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** stateManager initialized");
 	// This should be in CamerController::init()

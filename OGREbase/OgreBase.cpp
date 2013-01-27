@@ -77,6 +77,9 @@ void Base::setUpResources(void)
 
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
+	// After resource groups are initialized, parse the additional application configs with our own class
+	config.go();
+	Ogre::LogManager::getSingletonPtr()->logMessage("***** Config loaded. Hello, " + config.getValueAsString("Player/Name"));
 }
 
 
@@ -84,10 +87,26 @@ void Base::setUpResources(void)
 void Base::createWindow(void)
 {
 	Ogre::NameValuePairList opts;
-    opts["resolution"] = "1820x980";
-    opts["fullscreen"] = "false";
-    opts["vsync"] = "false";
-	mWindow = mRoot->createRenderWindow("WINDOW", 1820,980, false, &opts);
+	
+	if ( config.getKeyExists("System/screenWidth"))
+	{
+		int wid = config.getValueAsInt("System/screenWidth");
+		int hei = config.getValueAsInt("System/screenHeight");
+		Ogre::String res = Ogre::StringConverter::toString(wid + "x" + hei);
+		opts["resolution"] = res;
+	} else opts["resolution"] = "800x600";	// Fallback if config is not set
+
+    if ( config.getKeyExists("System/fullScreen"))
+	{
+		opts["fullscreen"] = config.getValueAsString("System/fullScreen");
+	} else opts["fullscreen"] = "false";
+
+	if ( config.getKeyExists("System/fullScreen"))
+	{
+		opts["vsync"] = config.getValueAsString("System/vSync");
+	} else opts["vsync"] = "false";
+	
+	mWindow = mRoot->createRenderWindow("WINDOW", config.getValueAsInt("System/screenWidth"),config.getValueAsInt("System/screenHeight"), config.getKeyExists("System/fullScreen"), &opts);
 }
 
 void Base::chooseSceneManager(void)
