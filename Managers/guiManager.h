@@ -34,6 +34,7 @@ public:
 	void showOptions(MyGUI::Widget* _sender);
 	void showLoadMap(MyGUI::Widget* _sender);
 	void dbug(Ogre::String);	// Send string to a standard debug layout object
+	void go(MyGUI::Widget* _sender); 
 	
 private:
 	// Pointers to various state managers passed to the class on init()
@@ -41,6 +42,7 @@ private:
 	StateManager* stateManager;														
 	myOutsideManager* outsideManager;
 	Ogre::RenderWindow* renderWindow;
+	MyGUI::VectorWidgetPtr layout;		// holds the current layout to show/hide
 	
 	// The myGUI class instantiation
 	MyGUI::Gui* mGUI;

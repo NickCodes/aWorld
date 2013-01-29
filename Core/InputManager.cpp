@@ -166,7 +166,7 @@ bool InputHandler::mouseMoved(const OIS::MouseEvent &arg)
 	if (state->getState() == 2)
 		cam->updateCamera(mouse->getMouseState().X.rel,mouse->getMouseState().Y.rel);
 	
-	// If state is registered as in MENU view, inject control to (singleton?) MyGUI::InputManager
+	// If state is registered as in MENU view, inject control to MyGUI::InputManager
 	if (state->getState() == 1)
 		MyGUI::InputManager::getInstance().injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
 

@@ -16,7 +16,8 @@ app::app(void)
 
 void app::initManagers(void)
 {
-	stateManager.init();													
+	stateManager.init();			
+
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** stateManager initialized");
 	// This should be in CamerController::init()
 	cameraController.createCameraController(mCamera,mSceneMgr, 0.8);		
@@ -29,6 +30,7 @@ void app::initManagers(void)
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** terrainManager initialized");
 	playerManager.init();
 	Ogre::LogManager::getSingletonPtr()->logMessage("***** Player Manager initialized");
+
 }
 
 
@@ -37,6 +39,7 @@ void app::evaluateKeypress(void)
 {
 	if (inputManager.escape == true)
 		setState(0);
+	
 
 	if (inputManager.up == true)
 	{
@@ -63,17 +66,16 @@ void app::evaluateKeypress(void)
 	{
 			if (stateManager.getState() == 1)
 				{
+					inputManager.space = false;
 					stateManager.setState(2);
 					guiManager.dbug("State changed to 2");
-					inputManager.space = false;
-					Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL,"***** Calling debug update in state 2");
 				}
 			else if (stateManager.getState() == 2)
 				{
-					stateManager.setState(1);
+					inputManager.space = false;	 // Reset flag
+					stateManager.setState(1);	// Set menu state
+					guiManager.mainMenu();
 					guiManager.dbug("State changed to 1");
-					inputManager.space = false;
-					Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL,"***** Calling debug update in state 1");
 				}
 		}
 }
@@ -105,6 +107,5 @@ void app::setState(int s)
 // Kickoff is where user interaction begins - ie main menu
 void app::kickoff(void)
 {
-	
-	guiManager.mainMenu();	// Draw the main menu bar
+		guiManager.mainMenu();	// Draw the main menu bar
 }
