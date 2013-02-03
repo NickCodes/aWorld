@@ -35,7 +35,10 @@ public:
 	void showLoadMap(MyGUI::Widget* _sender);
 	void dbug(Ogre::String);	// Send string to a standard debug layout object
 	void go(MyGUI::Widget* _sender); 
-	
+	void inGameMenu();
+	void clearAllLayouts();
+
+
 private:
 	// Pointers to various state managers passed to the class on init()
 	Ogre::SceneManager* sceneManager;

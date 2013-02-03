@@ -25,22 +25,50 @@ void Base::initBase(void)
 
 void Base::setUpOgre(void)
 {
+	
 	// Create root, allow CFG to be entered programatically
 	mRoot = new Ogre::Root("", "");
 	
 	// Set the log level detail to low for initialisation, I don't need this debug info as of 4/20/2012 ;)
-	// This will be reset to a higher level LL_NORMAL or LL_BOREME as I need info in my app code
-	//Ogre::LogManager::getSingleton().setLogDetail(Ogre::LL_LOW);
-	Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL, "********* Ogre Root created, log level set to LOW");
-		
-	// Manually define the render system
-	#if defined(_DEBUG)
-    mRoot->loadPlugin("RenderSystem_Direct3D9_d");
-	Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL, "********* Manually setting render system to RenderSystem_Direct3D9_d");
-	#else
-    mRoot->loadPlugin("RenderSystem_Direct3D9_d");
-	#endif
+	// Ogre::LL_LOW or LL_NORMAL or LL_BOREME
+	Ogre::LogManager::getSingleton().setLogDetail(Ogre::LL_NORMAL);
 
+	// Load our application custom config
+	config.go();
+	Ogre::LogManager::getSingletonPtr()->logMessage("***** Config loaded. Hello, " + config.getValueAsString("Player/Name"));
+		
+	// Get the render system setting and load the appropriate plugin
+	Ogre::String rSys = config.getValueAsString("System/renderSystem");
+	Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL, "********* Render: " + rSys);
+
+	if (config.getValueAsString("System/renderSystem") == "RenderSystem_Direct3D9_d")
+	{
+		#if defined(_DEBUG)
+			mRoot->loadPlugin("RenderSystem_Direct3D9_d");
+			Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL, "********* Loading RenderSystem_Direct3D9_d");
+		#else
+			mRoot->loadPlugin("RenderSystem_Direct3D9_d");
+		#endif
+	} else if (config.getValueAsString("System/renderSystem") == "RenderSystem_OpenGL_d")
+	{
+		#if defined(_DEBUG)
+			mRoot->loadPlugin("RenderSystem_OpenGL_d");
+			Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL, "********* Loading RenderSystem_OpenGL_d");
+		#else
+			mRoot->loadPlugin("RenderSystem_OpenGL_d");
+		#endif
+	} else 
+	{
+		Ogre::LogMessageLevel::LML_CRITICAL, "********* Render system: " + rSys + " not recognized, defaulting to direct3D";
+		
+		#if defined(_DEBUG)
+			mRoot->loadPlugin("RenderSystem_Direct3D9_d");
+			Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LogMessageLevel::LML_CRITICAL, "********* Loading RenderSystem_Direct3D9_d");
+		#else
+			mRoot->loadPlugin("RenderSystem_Direct3D9_d");
+		#endif
+	}
+	
 	// Iterates through a list of available render systems and initializes them
 	const Ogre::RenderSystemList &renderSystem = mRoot->getAvailableRenderers();	
     Ogre::RenderSystemList::const_iterator &r_it = renderSystem.begin();			
@@ -76,10 +104,6 @@ void Base::setUpResources(void)
     }
 
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
-	// After resource groups are initialized, parse the additional application configs with our own class
-	config.go();
-	Ogre::LogManager::getSingletonPtr()->logMessage("***** Config loaded. Hello, " + config.getValueAsString("Player/Name"));
 }
 
 

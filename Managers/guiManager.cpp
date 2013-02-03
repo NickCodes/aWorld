@@ -94,11 +94,24 @@ void myGUIManager::showLoadMap(MyGUI::Widget* _sender)
 	dbug("loadMap Clicked");
 }
 
+
+// This function is for testing, and loads a default map
 void myGUIManager::go(MyGUI::Widget* _sender)
 {
-	MyGUI::LayoutManager::getInstancePtr()->unloadLayout(layout);
-
-	outsideManager->loadTerrain("go");
-	stateManager->setState(2);
+	clearAllLayouts();
+	outsideManager->loadTerrain("go");								// liad terrain
+	stateManager->setState(2);										
 	outsideManager->snap();
+}
+
+
+void myGUIManager::inGameMenu()
+{
+	layout = MyGUI::LayoutManager::getInstance().loadLayout("inGame.layout");
+}
+
+
+void myGUIManager::clearAllLayouts()
+{
+	MyGUI::LayoutManager::getInstancePtr()->unloadLayout(layout);
 }

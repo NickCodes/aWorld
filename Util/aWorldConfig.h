@@ -11,7 +11,6 @@ public:
 	void go(void);
 	static MyConfig &getInstance();
  
-	//various getters used by class clients to get configuration directives
 	int getValueAsInt(std::string key);
 	Ogre::Real getValueAsReal(std::string key);
 	std::string getValueAsString(std::string key);
@@ -22,8 +21,6 @@ public:
  
 private:
 
-	//this is our config file
-	Ogre::ConfigFile m_ConfigFile;
-	//this is where our configuration data is stored
-	std::map<std::string, std::string> m_Configs;
+	Ogre::ConfigFile m_ConfigFile;					// Config file
+	std::map<std::string, std::string> m_Configs;	// Config variable
 };
