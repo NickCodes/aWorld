@@ -19,10 +19,3 @@ Features:
 - Skybox implementation
 - Spatial sound treatments (location, intensity) based on the Irrklang library
 
-Planned features:
-- Non static geometry
-- Mesh collision detection
-- Basic physics (bullet)
-- AI entity behaviors
-- Interactive day/night cycle
-- Dynamic weather effects
